@@ -1,0 +1,12 @@
+config BR2_PACKAGE_WAFFLE
+	bool "waffle"
+	# egl covers GBM, wayland covers wayland, X GLX
+	depends on BR2_PACKAGE_HAS_LIBEGL || BR2_PACKAGE_WAYLAND || BR2_PACKAGE_XSERVER_XORG_SERVER
+	help
+	  Waffle is a cross-platform C library that allows one to defer
+	  selection of an OpenGL API and window system until runtime. For
+	  example, on Linux, Waffle enables an application to select X11/EGL
+	  with an OpenGL 3.3 core profile, Wayland with OpenGL ES2, and other
+	  window system / API combinations.
+
+	  http://www.waffle-gl.org/
