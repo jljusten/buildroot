@@ -1,0 +1,3 @@
+#!/bin/sh
+export PIGLIT_PLATFORM=gbm
+piglit run quick /root/results/fun
