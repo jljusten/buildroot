@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_MAKO
+	bool "python-mako"
+	depends on BR2_PACKAGE_PYTHON
+	help
+	  A super-fast templating language that borrows the best ideas from the
+	  existing templating languages
+
+	  http://www.makotemplates.org/
