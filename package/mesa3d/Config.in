@@ -115,6 +115,12 @@ config BR2_PACKAGE_MESA3D_OPENGL_ES
 	  Use the Khronos OpenGL ES APIs.  This is commonly used on embedded
 	  systems and represents a subset of the OpenGL API.
 
+config BR2_PACKAGE_MESA3D_OPENGL_GBM
+	bool "OpenGL GBM"
+	depends on BR2_PACKAGE_HAS_UDEV
+	select BR2_PACKAGE_HAS_LIBGBM
+	help
+
 endif # BR2_PACKAGE_MESA3D_DRIVER
 
 config BR2_PACKAGE_PROVIDES_LIBEGL
@@ -122,6 +128,9 @@ config BR2_PACKAGE_PROVIDES_LIBEGL
 
 config BR2_PACKAGE_PROVIDES_LIBGLES
 	default "mesa3d" if BR2_PACKAGE_MESA3D_OPENGL_ES
+
+config BR2_PACKAGE_PROVIDES_LIBGBM
+	default "mesa3d" if BR2_PACKAGE_MESA3D_OPENGL_GBM
 
 endif # BR2_PACKAGE_MESA3D
 

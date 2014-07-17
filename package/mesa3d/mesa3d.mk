@@ -98,6 +98,7 @@ MESA3D_CONF_OPT += --enable-opengl
 
 ifeq ($(BR2_PACKAGE_MESA3D_OPENGL_EGL),y)
 MESA3D_PROVIDES += libegl
+MESA3D_PROVIDES += libgbm
 # egl depends on gbm, gbm depends on udev
 MESA3D_DEPENDENCIES += udev
 MESA3D_EGL_PLATFORMS = drm
