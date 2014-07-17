@@ -1,0 +1,7 @@
+menuconfig BR2_PACKAGE_GLU
+	bool "glu"
+	depends on BR2_PACKAGE_MESA3D
+	help
+	  The OpenGL Utility Library
+
+	  http://cgit.freedesktop.org/mesa/glu/
