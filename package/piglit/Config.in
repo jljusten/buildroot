@@ -1,0 +1,17 @@
+config BR2_PACKAGE_PIGLIT
+	bool "piglit"
+	# Mako and Numpy are both build deps only
+	depends on BR2_PACKAGE_PYTHON_MAKO
+	depends on BR2_PACKAGE_PYTHON_NUMPY
+
+	# Everything else is both runtime + build dep.
+	depends on BR2_PACKAGE_PYTHON
+	select BR2_PACKAGE_WAFFLE
+	select BR2_PACKAGE_GLU
+	# We could be explicit on our GL deps, but *any* mesa build should give us what we want.
+	# depends on (BR2_PACKAGE_HAS_LIBGL || BR2_PACKAGE_HAS_LIBGBM || BR2_PACKAGE_HAS_LIBEGL || BR2_PACKAGE_HAS_LIBGLES)
+	depends on BR2_PACKAGE_MESA3D
+	help
+	  Piglit is an open-source test suite for OpenGL implementations.
+
+	  http://piglit.freedesktop.org/
