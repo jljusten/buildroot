@@ -1,0 +1,50 @@
+From f17f0808ab3de6f65a3eedf5548e7b314b7a182f Mon Sep 17 00:00:00 2001
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Date: Fri, 18 Jul 2014 07:40:34 +0100
+Subject: [PATCH] sna/dri2: Protect compsiteext.h include with build check
+
+We shouldn't include calls to the composite extension if it has not been
+built.
+
+Reported-by: Ben Widawsky <ben@bwidawsk.net>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ src/sna/sna_dri2.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/src/sna/sna_dri2.c b/src/sna/sna_dri2.c
+index 1baaf2b..1edf98e 100644
+--- a/src/sna/sna_dri2.c
++++ b/src/sna/sna_dri2.c
+@@ -48,8 +48,9 @@ USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #include <xf86drm.h>
+ #include <i915_drm.h>
+ #include <dri2.h>
+-#if XORG_VERSION_CURRENT >= XORG_VERSION_NUMERIC(1,12,99,901,0)
++#if XORG_VERSION_CURRENT >= XORG_VERSION_NUMERIC(1,12,99,901,0) && defined(COMPOSITE)
+ #include <compositeext.h>
++#define CHECK_FOR_COMPOSITOR
+ #endif
+ 
+ #if DRI2INFOREC_VERSION < 2
+@@ -2164,7 +2165,7 @@ get_current_msc(struct sna *sna, DrawablePtr draw, xf86CrtcPtr crtc)
+ 	return draw_current_msc(draw, crtc, ret);
+ }
+ 
+-#if !XORG_CAN_TRIPLE_BUFFER && XORG_VERSION_CURRENT >= XORG_VERSION_NUMERIC(1,12,99,901,0)
++#if !XORG_CAN_TRIPLE_BUFFER && defined(CHECK_FOR_COMPOSITOR)
+ static Bool find(pointer value, XID id, pointer cdata)
+ {
+ 	return TRUE;
+@@ -2187,7 +2188,7 @@ static int use_triple_buffer(struct sna *sna, ClientPtr client, bool async)
+ #if XORG_CAN_TRIPLE_BUFFER
+ 	DBG(("%s: triple buffer enabled, using FLIP_THROTTLE\n", __FUNCTION__));
+ 	return FLIP_THROTTLE;
+-#elif XORG_VERSION_CURRENT >= XORG_VERSION_NUMERIC(1,12,99,901,0)
++#elif defined(CHECK_FOR_COMPOSITOR)
+ 	/* Hack: Disable triple buffering for compositors */
+ 	{
+ 		struct sna_client *priv = sna_client(client);
+-- 
+2.0.2
+
