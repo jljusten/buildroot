@@ -1,0 +1,19 @@
+config BR2_PACKAGE_INTEL_GPU_TOOLS
+	bool "intel-gpu-tools"
+
+	select BR2_PACKAGE_CAIRO
+	select BR2_PACKAGE_LIBDRM_INTEL
+	select BR2_PACKAGE_HAS_UDEV
+	select BR2_PACKAGE_XLIB_LIBPCIACCESS
+	select BR2_PACKAGE_XLIB_LIBXEXT
+	select BR2_PACKAGE_XLIB_LIBXRANDR
+	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_INTEL
+	select BR2_PACKAGE_LIBGLIB2
+
+	help
+	  tools for debugging the Intel graphics driver
+	  intel-gpu-tools is a package of tools for debugging the Intel graphics driver,
+ 	  including a GPU hang dumping program, performance monitor, and performance
+ 	  microbenchmarks for regression testing the DRM.
+
+	  https://01.org/linuxgraphics/

@@ -1,0 +1,22 @@
+From 559c1f8137247cc0a47845ab7b9db87971df0273 Mon Sep 17 00:00:00 2001
+From: Jordan Justen <jljusten@gmail.com>
+Date: Tue, 29 Jul 2014 15:37:19 -0700
+Subject: [PATCH 1/2] Add lib/check-ndebug.h from git
+
+---
+ lib/check-ndebug.h | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 lib/check-ndebug.h
+
+diff --git a/lib/check-ndebug.h b/lib/check-ndebug.h
+new file mode 100644
+index 0000000..68a6ec4
+--- /dev/null
++++ b/lib/check-ndebug.h
+@@ -0,0 +1,3 @@
++#ifdef NDEBUG
++#error "Testsuite needs its asserts!"
++#endif
+-- 
+2.0.1
+

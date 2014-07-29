@@ -1,0 +1,27 @@
+From 779dc9930e168187c2be919ecc0136c342067b58 Mon Sep 17 00:00:00 2001
+From: Ben Widawsky <ben@bwidawsk.net>
+Date: Wed, 30 Jul 2014 12:05:45 -0700
+Subject: [PATCH 2/2] Fix installing tests
+
+---
+ tests/Makefile.am | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index a2fba51..5c06ab3 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -27,8 +27,8 @@ multi-tests.txt: Makefile.sources
+ 	@echo ${multi_kernel_tests} >> $@
+ 	@echo END TESTLIST >> $@
+ 
+-EXTRA_PROGRAMS = $(TESTS_progs) $(TESTS_progs_M) $(HANG) $(TESTS_testsuite)
+-EXTRA_DIST = $(TESTS_scripts) $(TESTS_scripts_M) $(scripts) $(IMAGES) $(common_files)
++bin_PROGRAMS = $(TESTS_progs) $(TESTS_progs_M) $(HANG) $(TESTS_testsuite)
++dist_bin_SCRIPTS = $(TESTS_scripts) $(TESTS_scripts_M) $(scripts) $(IMAGES) $(common_files)
+ 
+ CLEANFILES = $(EXTRA_PROGRAMS) single-tests.txt multi-tests.txt
+ 
+-- 
+2.0.1
+
